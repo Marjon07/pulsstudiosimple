@@ -1,42 +1,32 @@
-// Get references to the HTML elements we'll be working with
-const form = document.querySelector('form');
-const nameInput = document.querySelector('input[name="name"]');
-const emailInput = document.querySelector('input[name="email"]');
-const messageInput = document.querySelector('textarea[name="message"]');
-const submitButton = document.querySelector('button[type="submit"]');
+function calculateCost() {
+  const concreteCost = Number(document.getElementById('concrete').value);
+  const woodCost = Number(document.getElementById('wood').value);
+  const steelCost = Number(document.getElementById('steel').value);
+  const glassCost = Number(document.getElementById('glass').value);
 
-// Add event listener for form submission
-form.addEventListener('submit', (e) => {
-  e.preventDefault(); // Prevent the form from submitting normally
+  const width = Number(document.getElementById('width').value);
+  const length = Number(document.getElementById('length').value);
+  const height = Number(document.getElementById('height').value);
 
-  // Get form field values
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const message = messageInput.value;
+  const area = width * length;
+  const volume = width * length * height;
 
-  // Send form data to server
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('email', email);
-  formData.append('message', message);
+  const concreteNeeded = area * 2;
+  const woodNeeded = area * 4;
+  const steelNeeded = area * 1;
+  const glassNeeded = area * 2;
 
-  fetch('/submit-form', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    if (response.ok) {
-      // Display confirmation message
-      const confirmationMsg = document.getElementById('confirmation-msg');
-      confirmationMsg.style.display = 'block';
+  const concreteTime = concreteNeeded / 100;
+  const woodTime = woodNeeded / 200;
+  const steelTime = steelNeeded / 150;
+  const glassTime = glassNeeded / 50;
 
-      // Clear form inputs
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  });
-});
+  const totalCost = (concreteCost * concreteNeeded) + (woodCost * woodNeeded) + (steelCost * steelNeeded) + (glassCost * glassNeeded);
+  const totalTime = concreteTime + woodTime + steelTime + glassTime;
+
+  const resultElement = document.getElementById('result');
+  const resultText = `<h3>Total Cost: $${totalCost.toFixed(2)}</h3><p>Total Time: ${totalTime.toFixed(2)} hours</p>`;
+  
+  resultElement.innerHTML = resultText;
+  resultElement.style.display = 'block';
+}
