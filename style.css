@@ -12,11 +12,9 @@
   font-size: 5rem;
   font-weight: bold;
   color: #d72f3f;
-  animation: animate 2s ease-in-out infinite;
-}
-
-@keyframes animate {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(30px) rotate(10deg); }
-  100% { transform: translateX(0); }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out;
 }
