@@ -8,13 +8,48 @@
   align-items: center;
 }
 
-#animation-text {
-  font-size: 5rem;
-  font-weight: bold;
-  color: #d72f3f;
+#seal-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease-in-out;
+  bottom: 0;
+  left: 0;
+  animation: walk 4s linear infinite;
+}
+
+#seal {
+  width: 150px;
+}
+
+#speech-bubble {
+  position: relative;
+  margin-top: -70px;
+  margin-left: 70px;
+  width: 120px;
+  height: 60px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+#speech-bubble:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent #fff transparent transparent;
+  top: -10px;
+  left: 30px;
+}
+
+#speech-bubble p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@keyframes walk {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(100px) rotateY(180deg); }
+  100% { transform: translateX(0); }
 }
